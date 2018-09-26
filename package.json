@@ -1,0 +1,23 @@
+{
+  "name": "bison_nodejs_sdk",
+  "version": "0.1.0",
+  "description": "小野牛nodejs请求sdk",
+  "main": "./services/requester.gateway.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "moment": "^2.22.2",
+    "request": "^2.88.0",
+    "validator": "^10.8.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "joey",
+  "license": "ISC"
+}
