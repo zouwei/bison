@@ -18,18 +18,18 @@ class NotImplementError extends BaseError {
 
 class ValidateError extends BaseError {}
 
-// 核保失败
+// 验证失败
 class VerifyError extends BaseError {
     constructor (product_id, reason) {
-        let message = `产品[${product_id}]核保失败，原因: ${reason}`;
+        let message = `产品[${product_id}]出现错误，原因: ${reason}`;
         super(message);
     }
 }
 
-// 确认保单失败
+// 确认失败
 class ConfirmError extends BaseError {
     constructor (reason) {
-        let message = `确认出保失败: ${reason}`;
+        let message = `确认失败: ${reason}`;
         super(message);
     }
 }
@@ -56,8 +56,6 @@ class ConnectError extends BaseError {} // 连接错误
 
 class OrderNotFound extends ObjectNotFound {}
 
-class PolicyNotFound extends ObjectNotFound {}
-
 class ProductNotFound extends ObjectNotFound {}
 
 // 已知的异常，消息经过了可读性的优化，与未知的、未处理的异常区分开来
@@ -69,7 +67,6 @@ module.exports = {
     VerifyError,
     ConfirmError,
     OrderNotFound,
-    PolicyNotFound,
     ProductNotFound,
     NotImplementError,
     HTTPError,

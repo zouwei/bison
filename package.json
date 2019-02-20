@@ -1,6 +1,6 @@
 {
   "name": "bison_nodejs_sdk",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "小野牛nodejs请求sdk",
   "main": "./services/requester.gateway.js",
   "directories": {

@@ -1,6 +1,7 @@
 const { BaseRequester } = require("../toolkits/base.requester");
 const { VerifyError, ConfirmError, ConnectError } = require("../toolkits/error");
 
+// APIGatewayRequester可以根据自定义业务进行修改
 class APIGatewayRequester extends BaseRequester {
     constructor(name, host, app_key, app_secret, defaultHeaders) {
         super(name, host, defaultHeaders);
@@ -10,8 +11,8 @@ class APIGatewayRequester extends BaseRequester {
         this.auth_url = "/tokens";
         this.token = "";
         // 两个测试API路由样例
-        this.verify_url = "/apis/verify";       // 核保
-        this.confirm_url = "/apis/confirm";     // 确保
+        this.one_url = "/apis/one";
+        this.two_url = "/apis/two";
     }
 
     authenticate() {
@@ -46,7 +47,7 @@ class APIGatewayRequester extends BaseRequester {
                 options.headers = {};
             }
             options.headers['Authorization'] = token;
-          
+
             return super.request(method, url, options);
         });
     }
@@ -64,10 +65,10 @@ class APIGatewayRequester extends BaseRequester {
     }
 
 
-    // 样例：核准请求
-    verifyRequest(params) {
+    // 样例：请求1
+    oneRequest(params) {
         var self = this;
-        let url = self.host + self.verify_url;
+        let url = self.host + self.one_url;
         console.log("请求api", url)
         return self.request("post", url, {
             "json": params,
@@ -86,10 +87,10 @@ class APIGatewayRequester extends BaseRequester {
     }
 
 
-    // 样例：确认请求
-    confirmRequest(params) {
+    // 样例：请求2
+    twoRequest(params) {
         var self = this;
-        let url = self.host + self.confirm_url;
+        let url = self.host + self.two_url;
 
         return self.post(url, {
             json: params
@@ -113,11 +114,11 @@ class APIGatewayRequester extends BaseRequester {
  * 
  */
 let api_requester = new APIGatewayRequester("apigateway",
-    "http://api.testdomain.ltd",    // 网关：host
+    "http://api.testdomain.com",    // 网关：host
     "test",                         // 网关：app_key
-    "4x41LqWxVu45rJB036dnj203kkd"   // 网关：app_secret
+    "544yyr56LqWxVu45rJB03334kkd"   // 网关：app_secret
 );
 
-module.exports = { APIGatewayRequester, api_requester };
+module.exports = { BaseRequester, APIGatewayRequester, api_requester };
 
 
